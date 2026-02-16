@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гулиза самая лучшая мама!!!</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e2a44, #2c3e66);
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    position: relative;
+    width: 350px;
+}
+
+h2 {
+    color: black;
+    transition: 0.3s;
+}
+
+.buttons {
+    margin-top: 30px;
+    position: relative;
+    height: 60px;
+}
+
+button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#yesBtn {
+    background: green;
+    color: white;
+    box-shadow: 0 10px 20px rgba(40, 40, 40, 0.4);
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(109, 108, 109, 0.8);
+}
+
+#noBtn {
+    background: red;
+    color: white;
+    position: absolute;
+    left: 150px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    transition: 0.25s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2 id="question">Гулиза, вы хотите купить шаурму сыну???</h2>
+
+    <div class="buttons">
+        <button id="yesBtn">да👍</button>
+        <button id="noBtn">нет👎</button>
+    </div>
+</div>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const question = document.getElementById("question");
+const card = document.querySelector(".card");
+
+document.addEventListener("mousemove", (e) => {
+
+    const rect = noBtn.getBoundingClientRect();
+    const distanceX = e.clientX - (rect.left + rect.width / 2);
+    const distanceY = e.clientY - (rect.top + rect.height / 2);
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+    if (distance < 120) {
+
+        const cardRect = card.getBoundingClientRect();
+
+        const maxX = cardRect.width - noBtn.offsetWidth;
+        const maxY = cardRect.height - noBtn.offsetHeight;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    }
+});
+
+noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+});
+
+// YES эффект
+yesBtn.addEventListener("click", () => {
+    question.innerHTML = "рахмаааат!!!!!❤️❤️❤️";
+    question.style.textShadow = "0 0 20px pink";
+    noBtn.style.display = "none";
+});
+</script>
+
+</body>
+</html>
